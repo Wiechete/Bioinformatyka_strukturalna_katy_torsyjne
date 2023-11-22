@@ -3,9 +3,10 @@ import numpy as np
 import sys
 import os
 
+# funkcja obliczajaca katy torsyjne
 def calculate_rna_torsion_angles(structure):
     torsion_angles = []
-    
+    # petla sprawdzajaca czy residue jest nukleotydem na podstawie fosforu i atomow 05
     for model in structure:
         for chain in model:
             for residue in chain:
@@ -16,7 +17,7 @@ def calculate_rna_torsion_angles(structure):
                     
                     angles = []
                     for i in range(len(atoms) - 3):
-                        # Convert numpy arrays to Bio.PDB.Vectors
+                        # Zamien numpy arrays na Bio.PDB.Vectors
                         v1 = PDB.Vector(list(atoms[i].get_vector()))
                         v2 = PDB.Vector(list(atoms[i + 1].get_vector()))
                         v3 = PDB.Vector(list(atoms[i + 2].get_vector()))
@@ -28,6 +29,7 @@ def calculate_rna_torsion_angles(structure):
     
     return np.array(torsion_angles)
 
+# zapisywanie katow torsyjnych
 def save_torsion_angles_to_file(angles, filename):
     np.savetxt(filename, angles, fmt='%f', delimiter='\t')
 
