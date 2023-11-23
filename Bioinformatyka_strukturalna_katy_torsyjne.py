@@ -16,14 +16,14 @@ def calculate_rna_torsion_angles(structure):
                              residue['C2\''], residue['C4\''], residue['C3\''], residue['C1\'']]
                     
                     angles = []
-                    for i in range(len(atoms) - 3):
+                    for i in range(len(atoms) - 3):# obliczanie katow
                         # Zamien numpy arrays na Bio.PDB.Vectors
                         v1 = PDB.Vector(list(atoms[i].get_vector()))
                         v2 = PDB.Vector(list(atoms[i + 1].get_vector()))
                         v3 = PDB.Vector(list(atoms[i + 2].get_vector()))
                         v4 = PDB.Vector(list(atoms[i + 3].get_vector()))
 
-                        angles.append(PDB.vectors.calc_dihedral(v1, v2, v3, v4))
+                        angles.append(PDB.vectors.calc_dihedral(v1, v2, v3, v4))# oblicz katy miedzy vectorami
                     
                     torsion_angles.append(angles)
     
